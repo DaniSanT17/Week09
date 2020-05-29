@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
+import { StatusBar,View, Text, Alert, StyleSheet, TextInput, TouchableOpacity, AsyncStorage } from 'react-native';
 
 import api from '../services/api';
 
@@ -26,6 +26,8 @@ const Book = ({navigation}) => {
   }
 
   return (
+    <>
+    <StatusBar barStyle="dark-content" backgroundColor="#fff"/>
     <View style={styles.container}>
      <Text style={styles.label}>DATA DE INTERESSE *</Text>
       <TextInput
@@ -45,6 +47,7 @@ const Book = ({navigation}) => {
         <Text style={styles.buttonText}>Cancelar</Text>
       </TouchableOpacity>
     </View>
+    </>
   );
 }
 

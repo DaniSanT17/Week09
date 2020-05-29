@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, AsyncStorage, KeyboardAvoidingView, Platform, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { StatusBar, View, AsyncStorage, KeyboardAvoidingView, Platform, Text, Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 import api from '../services/api';
 
@@ -11,13 +11,13 @@ const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [techs, setTechs] = useState('');
 
-  // useEffect(() => {
-  //   AsyncStorage.getItem('user').then(user => {
-  //     if (user) {
-  //       navigation.navigate('List');
-  //     }
-  //   })
-  // }, []);
+  useEffect(() => {
+    AsyncStorage.getItem('user').then(user => {
+      if (user) {
+        navigation.navigate('List');
+      }
+    })
+  }, []);
 
   async function handleSubmit() {
     const response = await api.post('/sessions', {
@@ -33,6 +33,8 @@ const Login = ({navigation}) => {
   }
 
   return (
+    <>
+    <StatusBar barStyle="dark-content" backgroundColor="#fff"/>
     <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
       <Image source={logo} />
 
@@ -65,6 +67,7 @@ const Login = ({navigation}) => {
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
+    </>
   );
 }
 
